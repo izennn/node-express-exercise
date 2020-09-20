@@ -19,7 +19,6 @@ dishRouter.route('/')
 })
 .post((req, res, next) => {
 	// post requests carry some info in body
-	console.log(res.body);
 	res.end('Will add info to dish: ' + req.body.name
 	+ " with details: " + req.body.description); // expect a "name" field in JSON 
 })
