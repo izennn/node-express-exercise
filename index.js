@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
 const dishRouter = require('./routes/dishRouter');
+const promoRouter = require('./routes/promoRouter');
+const leaderRouter = require('./routes/leaderRouter');
 const hostname = 'localhost';
 const port = 3000;
 
@@ -13,6 +15,8 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use('/dishes', dishRouter); // mount dish router to overall app
+app.use('/promos', promoRouter);
+app.use('/leaders', leaderRouter);
 app.use(express.static(__dirname+'/public'));
 
 // Here we are creating a "middleware function" which has access to req, res, and next middleware

@@ -1,13 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// API restpoint handling for /dishes
-const dishRouter = express.Router();
+const leaderRouter = express.Router();
 
-dishRouter.use(bodyParser.json())
+leaderRouter.use(bodyParser.json());
 
 // route takes endpoint as parameter
-dishRouter.route('/')
+leaderRouter.route('/')
 .all((req, res, next) => {
 	res.statusCode = 200;
 	res.setHeader('Content-Type', 'text/plain');
@@ -15,42 +14,42 @@ dishRouter.route('/')
 })
 .get((req, res, next) => {
 	// now res is modified
-	res.end('Will send all the dishes to you!');
+	res.end('Will send all the leaders to you!');
 })
 .post((req, res, next) => {
 	// post requests carry some info in body
-	res.end('Will add info to dish: ' + req.body.name
+	res.end('Will add info to leader: ' + req.body.name
 	+ " with details: " + req.body.description); // expect a "name" field in JSON 
 })
 .put((req, res, next) => {
 	res.statusCode = 403;
-	res.end('PUT operation not supported on /dishes');
+	res.end('PUT operation not supported on /leader');
 })
 .delete((req, res, next) => {
 	// later we will restrict this dangerous operation to authorized users
 	res.statusCode = 403;
-	res.end('DELETE operation not supported on /dishes');
+	res.end('DELETE operation not supported on /leader');
 })
 
-dishRouter.route('/:dishId')
+leaderRouter.route('/:leaderId')
 .all((req, res, next) => {
 	res.statusCode = 200;
 	res.setHeader('Content-Type', 'text/plain');
 	next();
 })
 .get((req, res, next) => {
-	res.end(`Getting details for dish ${req.params.dishId}`)
+	res.end(`Getting details for leader ${req.params.leaderId}`)
 })
 .post((req, res, next) => {
-	res.end(`Updating dish ${req.params.dishId}\nWith name: ${req.body.name}, description: ${req.body.description}`)
+	res.end(`Updating leader ${req.params.leaderId}\nWith name: ${req.body.name}, description: ${req.body.description}`)
 })
 .put((req, res, next) => {
-	res.write(`Updating the dish ${req.params.dishId}\n`)
-	res.end(`Will udpate the dish: ${req.body.name} with details: ${req.body.description}`)
+	res.write(`Updating the leader ${req.params.leaderId}\n`)
+	res.end(`Will udpate the leader: ${req.body.name} with details: ${req.body.description}`)
 })
 .delete((req, res, next) => {
 	res.statusCode = 403;
-	res.end(`Deleting dish ${req.params.dishId}`);
+	res.end(`Deleting leader ${req.params.leaderId}`);
 })
 
-module.exports = dishRouter;
+module.exports = leaderRouter;
