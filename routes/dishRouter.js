@@ -32,6 +32,19 @@ dishRouter.route('/')
 	res.end('DELETE operation not supported on /dishes');
 })
 
+dishRouter.route('/:dishId')
+.all((req, res, next) => {
+	res.statusCode = 200;
+	res.setHeader('Content-Type', 'text/plain');
+	next();
+})
+.get((req, res, next) => {
+	res.end(`Getting details for dish ${req.params.dishId}`)
+})
+.post((req, res, next) => {
+	res.end(`Updating dish ${req.params.dishId}\nWith name: ${req.body.name}, description: ${req.body.description}`)
+})
+
 module.exports = dishRouter;
 
 
