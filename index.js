@@ -8,6 +8,8 @@ const port = 3000;
 // app object conventionally denotes the Express app
 const app = express();
 
+app.use(morgan('dev'));
+
 app.use(express.static(__dirname+'/public'));
 
 // Here we are creating a "middleware function" which has access to req, res, and next middleware
